@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<!-- @BeforeSuite -->
+<suite name="EliteCareer Test Suite" verbose="2">
+
+	<!-- @BeforeTest -->
+	<test name="Regression Test">
+
+		<packages>
+
+			<package name="tests"></package>
+
+		</packages>
+
+	</test>
+	<!-- @BeforeTest -->
+
+</suite>
+<!-- @AfterSuite -->
