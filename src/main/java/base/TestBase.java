@@ -19,8 +19,8 @@ public class TestBase extends Driver {
 	
 	protected static JobSearchPage jobSearchPage;
 	protected static SigninPage signinPage;
-	protected static RegistrationPage registrationPage;
 	protected static MenuBar menuBar;
+	protected static RegistrationPage registrationPage;
 	
 	@BeforeTest
 	public void setUp(){
@@ -32,8 +32,8 @@ public class TestBase extends Driver {
 		
 		jobSearchPage = PageFactory.initElements(driver, JobSearchPage.class);
 		signinPage = PageFactory.initElements(driver, SigninPage.class);
-		registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
 		menuBar = PageFactory.initElements(driver, MenuBar.class);
+		registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
 
 	}
 	
