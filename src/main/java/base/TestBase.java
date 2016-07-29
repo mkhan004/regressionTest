@@ -25,6 +25,7 @@ public class TestBase extends Driver {
 	@BeforeTest
 	public void setUp(){
 		try{
+			chromeDriverPath = "./ExternalDriver/chromedriver";
 			setDriver(browserType, appUrl);
 		}catch(Exception e){
 			e.printStackTrace();

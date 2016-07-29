@@ -1,5 +1,9 @@
 package tests;
 
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -32,7 +36,10 @@ public class TestRegistrationPage extends TestBase {
 		registrationPage.selectDropdownListElementByValue(registrationPage.userTypeDropdownList, "Jobseeker");
 		
 		registrationPage.emailField.clear();
-		registrationPage.emailField.sendKeys("ruhulny10@gmail.com");
+		int rand = registrationPage.getRandomNumber(1000000, 100);
+		String email = "ruhulny"+ rand +"@gmail.com";
+		System.out.println(email);
+		registrationPage.emailField.sendKeys(email);
 		
 		registrationPage.passwordField.clear();
 		registrationPage.passwordField.sendKeys("12345678");
@@ -50,8 +57,34 @@ public class TestRegistrationPage extends TestBase {
 		
 		registrationPage.submitButton.click();
 		
+		boolean condition = registrationPage.getCurrentUrl().contains("/profile.php");
 		
+		Assert.assertTrue(condition);
 		
+		// TODO logout
+		// TODO click register link to come back registration page
+	}
+	
+	@Test
+	public void testRegistrationWithEmptyRequiredFields(){
+		menuBar.registerLink.click();
+		registrationPage.submitButton.click();
+		
+		List<WebElement> errorList = registrationPage.errorWebElementList;
+		
+		Assert.assertEquals(errorList.get(0).getText(), "* FirstName can not be empty.");
+		Assert.assertEquals(errorList.get(1).getText(), "* LastName can not be empty.");
+		Assert.assertEquals(errorList.get(2).getText(), "* Gender can not be empty.");
+		Assert.assertEquals(errorList.get(3).getText(), "* DateOfBirth can not be empty.");
+		Assert.assertEquals(errorList.get(4).getText(), "* PhoneNo can not be empty.");
+		Assert.assertEquals(errorList.get(5).getText(), "* UserType can not be empty.");
+		Assert.assertEquals(errorList.get(6).getText(), "* Email can not be empty.");
+		Assert.assertEquals(errorList.get(7).getText(), "* Password can not be empty.");
+		Assert.assertEquals(errorList.get(8).getText(), "* ConfirmPassword can not be empty.");
+		Assert.assertEquals(errorList.get(9).getText(), "* Captcha can not be empty.");
+		
+		boolean condition = registrationPage.getCurrentUrl().contains("/register.php");
+		Assert.assertTrue(condition);
 	}
 	
 	@AfterClass
